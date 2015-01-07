@@ -6,6 +6,7 @@ module ActiveRecordQueryTrace
     attr_accessor :enabled
     attr_accessor :level
     attr_accessor :lines
+    attr_accessor :new_log
   end
 
   module ActiveRecord
@@ -16,6 +17,7 @@ module ActiveRecordQueryTrace
         ActiveRecordQueryTrace.enabled = false
         ActiveRecordQueryTrace.level = :app
         ActiveRecordQueryTrace.lines = 5
+         ActiveRecordQueryTrace.new_log = true
       end
 
       def sql(event)
@@ -27,8 +29,12 @@ module ActiveRecordQueryTrace
               0..(ActiveRecordQueryTrace.lines - 1)
             end
           end
-
+         if ActiveRecordQueryTrace.new_log
+          new_logger = Logger.new("#{Rails.root}/log/query.log")
+          new_logger.debug(color('Called from: ', MAGENTA, true) + clean_trace(caller)[index].join("\n "))
+        else
           debug(color('Called from: ', MAGENTA, true) + clean_trace(caller)[index].join("\n "))
+        end
         end
       end
 
