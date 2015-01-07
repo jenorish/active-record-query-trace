@@ -39,6 +39,7 @@ module ActiveRecordQueryTrace
              logging_info << (color('Query: ', BLUE, true) + color(event.payload[:sql],RED,true))
              logging_info << (color('Time: ', GREEN, true) + color(event.time.to_datetime.strftime('%a %b %d %Y %H:%M:%S %Z'),YELLOW,true))
              logging_info << (color('Called from: ', MAGENTA, true) + clean_trace(caller)[index].join("\n "))
+             logging_info << "********************************************************************************/n"
              new_logger.debug(logging_info.join("\n"))
           else
             debug(color('Called from: ', MAGENTA, true) + clean_trace(caller)[index].join("\n "))
