@@ -36,9 +36,10 @@ module ActiveRecordQueryTrace
          if ActiveRecordQueryTrace.new_log
              new_logger = Logger.new("#{Rails.root}/log/#{logname}.log")
              logging_info=[]
-             logging_info << (color('Called from: ', MAGENTA, true) + clean_trace(caller)[index].join("\n "))
-             logging_info << (color('Time: ', GREEN, true) + color(event.time.to_datetime.strftime('%a %b %d %Y %H:%M:%S %Z'),YELLOW,true))
              logging_info << (color('Query: ', BLUE, true) + color(event.payload[:sql],RED,true))
+             logging_info << (color('Time: ', GREEN, true) + color(event.time.to_datetime.strftime('%a %b %d %Y %H:%M:%S %Z'),YELLOW,true))
+             logging_info << (color('Called from: ', MAGENTA, true) + clean_trace(caller)[index].join("\n "))
+             
              logging_info << "********************************************************************************\n"
              new_logger.debug(logging_info.join("\n"))
           else
