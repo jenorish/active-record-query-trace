@@ -8,7 +8,7 @@ Gem::Specification.new do |gem|
   gem.description   = gem.summary
   gem.authors       = ["Cody Caughlan"]
   gem.email         = 'toolbag@gmail.com'
-  gem.homepage      = 'https://github.com/ruckus/active-record-query-trace'
+  gem.homepage      = 'https://github.com/jenorish/active-record-query-trace'
   gem.files         = Dir["**/*"]
   gem.license       = 'MIT'
 end
