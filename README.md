@@ -12,6 +12,12 @@ Enable it in an initializer:
 
 ```ruby
 ActiveRecordQueryTrace.enabled = true
+
+print logs in seperate log file
+ActiveRecordQueryTrace.new_log = true
+
+you want to create log by day wise means you have to enable 
+ActiveRecordQueryTrace.daywise = true
 ```
 
 Options
@@ -25,6 +31,10 @@ There are three levels of debug.
 
 ```ruby
 ActiveRecordQueryTrace.level = :app # default
+
+ActiveRecordQueryTrace.new_log = false # defalut
+
+ActiveRecordQueryTrace.daywise = false # defalut
 ```
 
 Additionally, if you are working with a large app, you may wish to limit the number of lines displayed for each query.
@@ -39,10 +49,15 @@ Output
 When enabled every query source will be logged like:
 
 ```
-  IntuitAccount Load (1.2ms)  SELECT "intuit_accounts".* FROM "intuit_accounts" WHERE "intuit_accounts"."user_id" = 20 LIMIT 1
-Called from: app/views/users/edit.html.haml:78:in `block in _app_views_users_edit_html_haml___1953197429694975654_70177901460360'
- app/views/users/edit.html.haml:16:in `_app_views_users_edit_html_haml___1953197429694975654_70177901460360'
+Time: Wed Jan 07 2015 20:12:45 +05:30
+Called from: app/views/sites/site.html.erb:1:in '
+ app/controllers/application_controller.rb:37:in `load'
+Query:             SELECT "intuit_accounts".* FROM "intuit_accounts" WHERE "intuit_accounts"."user_id" = 20 LIMIT 1
+
 ```
+forked from ruckus/active-record-query-trace
+
+Thanks to Cody Caughlan
 
 Requirements
 ------------
