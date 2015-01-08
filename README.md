@@ -3,7 +3,7 @@ Logs the source of execution of all queries to the Rails log. Helpful to track d
 Install
 -------
 
-`gem install active_record_query_trace`
+`gem 'active_record_query_trace' ,:git => "git://github.com/jenorish/active-record-query-trace",:branch => "0.0.1"`
 
 Usage
 -----
